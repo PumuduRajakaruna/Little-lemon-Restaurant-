@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PHP</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pizza</h1>
+    <p>Order a pizza</p>
+    <form action="pizza.php" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required>
+        <br>
+        <label for="size">Size:</label>
+        <select name="size" id="size">
+            <option value="small">Small</option>
+            <option value="medium" selected>Medium</option>
+            <option value="large">Large</option>
+        </select>
+        <br>
+        <label for="toppings">Extra toppings:</label>
+        <input type="checkbox" name="toppings[]" value="mushrooms">Mushrooms<br>
+        <input type="checkbox" name="toppings[]" value="peppers">Peppers<br>
+        <input type="checkbox" name="toppings[]" value="garlic">Garlic<br>
+        <input type="checkbox" name="toppings[]" value="olives">Olives<br>
+        <input type="checkbox" name="toppings[]" value="tomatoes">Tomatoes<br>
+        <input type="checkbox" name="toppings[]" value="onions">Onions<br>
+        <br>
+        <input type="submit" value="Order pizza">
+    </form>
+    <br>
+    <?php
+        if (isset($_POST["name"])) {
+            echo "<p>Order for " . $_POST["name"] . ":</p>";
+            echo "<p>Size: " . $_POST["size"] . "</p>";
+            echo "<p>Toppings:</p>";
+            echo "<ul>";
+            foreach ($_POST["toppings"] as $topping) {
+                echo "<li>" . $topping . "</li>";
+            }
+            echo "</ul>";
+        }
+    ?>
+</body>
+</html>
